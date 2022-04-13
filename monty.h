@@ -63,4 +63,20 @@ typedef struct cmd_s
 	stack_t **tail;
 } relish;
 
+/**
+ * a lit of curated functions for the monty interpreter.
+ * @ip: input = ip
+ * @relish: relishing the command to parse.
+ */
+
+void eval(char *line, stack_t **x, stack_t **y, int *mode, unsigned int ln);
+int parse(char *line, relish *ip);
+void push(relish *ip);
+void pall(relish *ip);
+void pint(relish *ip);
+void pop(relish *ip);
+void swap(relish *ip);
+void nop(relish *ip);
+void addop(relish *ip);
+
 #endif /*_MONTY_H_*/
