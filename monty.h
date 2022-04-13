@@ -11,6 +11,7 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 #include <sys/types.h>
+
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -41,5 +42,25 @@ typedef struct instruction_s
         char *opcode;
         void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
+
+/**
+ * struct cmd_s - command struct
+ * @op: operation
+ * @arg: argument of the function
+ * @mode: the stack mode or queue mode
+ * @line_number: the line in thought
+ * @head: head of the linked list
+ * @tail: tail of the linked list
+ */
+
+typedef struct cmd_s
+{
+	char *op;
+	int arg;
+	int *mode;
+	unsigned int line_number;
+	stack_t **head;
+	stack_t **tail;
+} relish;
 
 #endif /*_MONTY_H_*/
