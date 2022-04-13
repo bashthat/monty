@@ -12,6 +12,16 @@
 #include <readline/history.h>
 #include <sys/types.h>
 
+#define OPCODES { \
+	{"push", op_push},\
+	{"pall", op_pall},\
+	{"pint", op_pint},\
+	{"pop", op_pop},\
+	{"swap", op_swap},\
+	{"add", op_add},\
+	{"nop", op_nop},\
+}
+
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
