@@ -31,7 +31,7 @@ int main(int argc, char **argv)
 	/*ui = getline(&buffer, &buffsize, file);*/
 	while (getline(&buffer, &buffsize, file) != -1)
 	{
-		s == tokenize(buffer);
+		s = tokenize(buffer);
 		find_opc(&sn, s, x);
 		getline(&buffer, &buffsize, file);
 		x++;
