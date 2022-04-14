@@ -28,13 +28,13 @@ int parse(char *line, relish *ip)
 		return (0);
 	}
 
-	if (strcmp(p, "queue") == 0)
+	if (strcmp(ip, "queue") == 0)
 	{
 		*ip->mode = 1;
 		return (0);
 	}
 
-	if (strcmp(p, "push") == 0)
+	if (strcmp(ip, "push") == 0)
 	{
 		arg = strtok(NULL, delims);
 		if (arg == NULL)

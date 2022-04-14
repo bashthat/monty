@@ -32,7 +32,7 @@ void pint(relish *ip)
 
 	if (h == NULL)
 	{
-		printf("L%d: can't pint, stack empty\n", cmd->line_number);
+		printf("L%d: can't pint, stack empty\n", ip->line_number);
 		exit(EXIT_FAILURE);
 	}
 

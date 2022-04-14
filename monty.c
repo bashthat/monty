@@ -43,3 +43,4 @@ int main(int argc, char **argv)
 	free_list(&head);
 	return (EXIT_SUCCESS);
 }
+}

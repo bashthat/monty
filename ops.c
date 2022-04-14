@@ -4,7 +4,7 @@
  * addop - utilizes function or operation
  * @ip: data used for function of operation
  */
-void addop(relish *ip)
+void opz(relish *ip)
 {
 	instruction_t funcs[] = {
 		{"push", push},
@@ -21,7 +21,7 @@ void addop(relish *ip)
 
 	while (funcs[i].opcode)
 	{
-		if (strcmp(ip->op, funcs[i].opcode) == 0)
+		if (strcmp(ip->ip, funcs[i].opcode) == 0)
 		{
 			funcs[i].f(ip);
 			return;
@@ -29,6 +29,6 @@ void addop(relish *ip)
 		i++;
 	}
 
-	printf("L%d: unknown instruction %s\n", ip->line_number, ip->op);
+	printf("L%d: unknown instruction %s\n", ip->line_number, ip->ip);
 	exit(EXIT_FAILURE);
 }

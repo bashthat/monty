@@ -87,6 +87,7 @@ void pint(relish *ip);
 void pop(relish *ip);
 void swap(relish *ip);
 void nop(relish *ip);
-void addop(relish *ip);
+void opz(relish *ip);
 void free_list(stack_t **head);
+void opcode_lookup(char *line, int **stack, unsigned int line_number);
 #endif /*_MONTY_H_*/
