@@ -61,7 +61,7 @@ char **tokenize(char *buffer)
 	for (x = 1; token != NULL; x++)
 	{
 		token = strtok(NULL, delim);
-		to_arr[i] = token;
+		to_arr[x] = token;
 	}
 
 	return (to_arr);
