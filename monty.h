@@ -1,27 +1,6 @@
 #ifndef _MONTY_H_
 #define _MONTY_H_
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <ctype.h>
-#include <stdbool.h>
-#include <stdarg.h>
-#include <errno.h>
-#include <readline/readline.h>
-#include <readline/history.h>
-#include <sys/types.h>
-
-#define OPCODES { \
-	{"push", op_push},\
-	{"pall", op_pall},\
-	{"pint", op_pint},\
-	{"pop", op_pop},\
-	{"swap", op_swap},\
-	{"add", op_add},\
-	{"nop", op_nop},\
-}
-
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -53,41 +32,33 @@ typedef struct instruction_s
         void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-/**
- * struct cmd_s - command struct
- * @op: operation
- * @arg: argument of the function
- * @mode: the stack mode or queue mode
- * @line_number: the line in thought
- * @head: head of the linked list
- * @tail: tail of the linked list
- */
+/*INCLUDE LIBRARIES*/
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <errno.h>
+#include <unistd.h>
+#include <ctype.h>
+#include <stddef.h>
+#include <limits.h>
 
-typedef struct cmd_s
-{
-	char *op;
-	int arg;
-	int *mode;
-	unsigned int line_number;
-	stack_t **head;
-	stack_t **tail;
-} relish;
 
-/**
- * a lit of curated functions for the monty interpreter.
- * @ip: input = ip
- * @relish: relishing the command to parse.
- */
-
-void eval(char *line, stack_t **x, stack_t **y, int *mode, unsigned int ln);
-int parse(char *line, relish *ip);
-void push(relish *ip);
-void pall(relish *ip);
-void pint(relish *ip);
-void pop(relish *ip);
-void swap(relish *ip);
-void nop(relish *ip);
-void opz(relish *ip);
+/*FUNCTIONS*/
+void op_push(stack_t **stack, __attribute__((unused)) unsigned int line_number);
+void op_pall(stack_t **stack, unsigned int line_number);
+void op_pint(stack_t **stack, unsigned int line_number);
+void op_pop(stack_t **stack, unsigned int line_number);
+void op_swap(stack_t **stack, unsigned int line_number);
+void op_add(stack_t **stack, unsigned int line_number);
+void op_nop(stack_t **stack, unsigned int line_number);
+void find_opc(stack_t **head, char *string, unsigned int line_num);
 void free_list(stack_t **head);
-void opcode_lookup(char *line, int **stack, unsigned int line_number);
+
+/*EXTERNAL VARIABLE*/
+extern char same;
+char same;
+
 #endif /*_MONTY_H_*/
