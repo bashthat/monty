@@ -88,5 +88,5 @@ void pop(relish *ip);
 void swap(relish *ip);
 void nop(relish *ip);
 void addop(relish *ip);
-
+void free_list(stack_t **head);
 #endif /*_MONTY_H_*/
