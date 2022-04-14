@@ -7,10 +7,9 @@
  */
 int main(int argc, char **argv)
 {
-	size_t buffsize = 1024;
+	size_t buffsize;
 	char *buffer = malloc(buffsize * sizeof(char));
 	FILE *file;
-	/*ssize_t ui;*/
 	char *s = NULL;
 	int x = 1;
 	stack_t *sn = NULL;
@@ -32,7 +31,7 @@ int main(int argc, char **argv)
 	/*ui = getline(&buffer, &buffsize, file);*/
 	while (getline(&buffer, &buffsize, file) != -1)
 	{
-		s = strtok(buffer, " \t\r\n");
+		s = tokenize(buffer);
 		find_opc(&sn, s, x);
 		getline(&buffer, &buffsize, file);
 		x++;
@@ -41,6 +40,31 @@ int main(int argc, char **argv)
 	free_list(&sn);
 	fclose(file);
 	exit(EXIT_SUCCESS);
+}
+
+/**
+ * tokenize - tokenize a string
+ * @buffer: buffer line
+ * Return: tokenized array
+ */
+char **tokenize(char *buffer)
+{
+	char **to_arr;
+	char *token;
+	int x;
+	char delim[] = {' ', '\n'};
+
+	to_arr = malloc(sizeof(char) * 1024);
+
+	token = strtok(buffer, delim);
+	to_arr[0] = token;
+	for (x = 1; token != NULL; x++)
+	{
+		token = strtok(NULL, delim);
+		to_arr[i] = token;
+	}
+
+	return (to_arr);
 }
 
 /**
@@ -64,19 +88,19 @@ void find_opc(stack_t **head, char *string, unsigned int line_num)
 	{NULL, NULL}
 	};
 
-        int x = 0;
-	
+	int x = 0;
+
 	while (x < 7)
 
-        if(string == NULL)
-                return;
-        for (x = 0; fopc[x].opcode; x++)
-        {
-                if (strcmp(fopc[x].opcode, string) == 0)
-                {
-                        fopc[x].f(head, line_num);
-                        return;
-                }
-        }
-        fprintf(stderr, "L%d: unknown instruction %s\n", line_num, string);
+	if (string == NULL)
+		return;
+	for (x = 0; fopc[x].opcode; x++)
+	{
+		if (strcmp(fopc[x].opcode, string) == 0)
+		{
+			fopc[x].f(head, line_num);
+			return;
+		}
+	}
+	fprintf(stderr, "L%d: unknown instruction %s\n", line_num, string);
 }

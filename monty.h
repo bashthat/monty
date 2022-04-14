@@ -47,7 +47,7 @@ typedef struct instruction_s
 
 
 /*FUNCTIONS*/
-void op_push(stack_t **stack, unsigned int line_number);
+void op_push(stack_t **stack, __attribute__((unused)) unsigned int line_number);
 void op_pall(stack_t **stack, unsigned int line_number);
 void op_pint(stack_t **stack, unsigned int line_number);
 void op_pop(stack_t **stack, unsigned int line_number);
@@ -56,9 +56,9 @@ void op_add(stack_t **stack, unsigned int line_number);
 void op_nop(stack_t **stack, unsigned int line_number);
 void find_opc(stack_t **head, char *string, unsigned int line_num);
 void free_list(stack_t **head);
-void op_push(stack_t **stack, unsigned int line_num);
 
 /*EXTERNAL VARIABLE*/
 extern char same;
+char same;
 
 #endif /*_MONTY_H_*/
