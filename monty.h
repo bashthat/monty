@@ -1,6 +1,5 @@
 #ifndef _MONTY_H_
 #define _MONTY_H_
-
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -12,11 +11,10 @@
  */
 typedef struct stack_s
 {
-        int n;
-        struct stack_s *prev;
-        struct stack_s *next;
+	int n;
+	struct stack_s *prev;
+	struct stack_s *next;
 } stack_t;
-
 
 /**
  * struct instruction_s - opcode and its function
@@ -28,37 +26,48 @@ typedef struct stack_s
  */
 typedef struct instruction_s
 {
-        char *opcode;
-        void (*f)(stack_t **stack, unsigned int line_number);
+	char *opcode;
+	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+#define OPCODES {\
+	{"push", push},\
+	{"pall", pall},\
+	{"pint", pint},\
+	{"pop", pop},\
+	{"swap", swap},\
+	{"add", add},\
+	{"nop", nop},\
+	{NULL, NULL},\
+}
+
 /*INCLUDE LIBRARIES*/
+#define _POSIX_C_SOURCE 200809L
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
-#include <errno.h>
 #include <unistd.h>
 #include <ctype.h>
 #include <stddef.h>
 #include <limits.h>
-
-
-/*FUNCTIONS*/
-void op_push(stack_t **stack, __attribute__((unused)) unsigned int line_number);
-void op_pall(stack_t **stack, unsigned int line_number);
-void op_pint(stack_t **stack, unsigned int line_number);
-void op_pop(stack_t **stack, unsigned int line_number);
-void op_swap(stack_t **stack, unsigned int line_number);
-void op_add(stack_t **stack, unsigned int line_number);
-void op_nop(stack_t **stack, unsigned int line_number);
-void find_opc(stack_t **head, char *string, unsigned int line_num);
-void free_list(stack_t **head);
+#include <unistd.h>
 
 /*EXTERNAL VARIABLE*/
-extern char same;
-char same;
+extern char *same;
+char *same;
+
+/*FUNCTIONS*/
+void pall(stack_t **stack, unsigned int line_number);
+void pint(stack_t **stack, unsigned int line_number);
+void pop(stack_t **stack, unsigned int line_number);
+void swap(stack_t **stack, unsigned int line_number);
+void push(stack_t **stack, unsigned int line_number);
+void find_opc(stack_t **stack, char *string, unsigned int line_number);
+void free_list(stack_t **head);
+void add(stack_t **stack, unsigned int line_number);
+void nop(stack_t **stack, unsigned int line_number);
 
 #endif /*_MONTY_H_*/
